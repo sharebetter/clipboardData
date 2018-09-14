@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+</head>
+<body>
+	<a href=""></a>
+	<script type="text/javascript">
+		var base64ImgData = '';		
+	    function convertImgToBase64(url, callback, outputFormat){
+		    var img = new Image();
+		    img.crossOrigin = 'Anonymous';
+		    img.onload = function(){
+		        var canvas = document.createElement('CANVAS');
+		        var ctx = canvas.getContext('2d');
+		        canvas.height = this.height;
+		        canvas.width = this.width;
+		        ctx.drawImage(this,0,0,canvas.height,canvas.width);
+		        var dataURL = canvas.toDataURL('image/png',0.5);
+		        base64ImgData = dataURL;
+		//      dataURL = dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+		        callback(dataURL);
+		        canvas = null;
+		    };
+		    img.src = url;
+		}
+	 
+	 
+		convertImgToBase64('http://oxto2zus6.bkt.clouddn.com/1.png', function(base64Img){
+	//	    console.log('base64 :',base64Img);
+		    console.log(base64ImgData,'base64ImgData')
+		})
+	</script>
+</body>
+</html>
